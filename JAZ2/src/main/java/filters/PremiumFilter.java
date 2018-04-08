@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import domain.User;
-@WebFilter(filterName="filter3", urlPatterns="/premium.jsp")
+@WebFilter(filterName="filter3", urlPatterns="/premium")
 public class PremiumFilter implements Filter {
 
 	@Override

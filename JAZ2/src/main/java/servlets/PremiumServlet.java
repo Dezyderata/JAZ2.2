@@ -11,12 +11,14 @@ import javax.servlet.http.HttpSession;
 
 import repositories.UserRepository;
 
-@WebServlet("/main")
-public class ProfileServlet extends HttpServlet{
+@WebServlet("/premium")
+public class PremiumServlet extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
-		
+		UserRepository repository = new UserRepository();
+		request.setAttribute("allUsers", repository.returnArray());
+		request.getRequestDispatcher("/premium.jsp").forward(request, response);
 	}
 
 }

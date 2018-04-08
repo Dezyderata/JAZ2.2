@@ -23,7 +23,7 @@
 	<c:out value="${conf.isAdmin()}"/>
 	<br>
 	<h3>Do strony premium:</h3>
-	<form action="premium.jsp" method="get">
+	<form action="/premium" method="get">
 		<input type="submit" value="premium"/>
 	</form>
 	<h3>Strona do zarządzania kontami:</h3>
