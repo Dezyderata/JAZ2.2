@@ -25,7 +25,7 @@ public class AdminFilter implements Filter{
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
 		HttpSession session = httpRequest.getSession();
 		if(session.getAttribute("conf")==null){
-			httpResponse.sendRedirect("index.jsp");
+			httpResponse.sendRedirect("index.jsp?error=2");
 			return;
 		}else if(!((User)(session.getAttribute("conf"))).isAdmin()) {
 				httpResponse.sendRedirect("main.jsp");
