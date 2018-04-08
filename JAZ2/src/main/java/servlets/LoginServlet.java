@@ -34,7 +34,7 @@ public class LoginServlet extends HttpServlet{
 	        }else{
 	        	UserRepository repository = new UserRepository();
 	            if(repository.searchForUser(user.getName(), user.getPassword())) {
-	            	session.setAttribute("conf", user);
+	            	session.setAttribute("conf", repository.getUserInformationByName(user.getName()));
 	            	response.sendRedirect("main.jsp");
 	            } else {
 	            	response.sendRedirect("index.jsp");

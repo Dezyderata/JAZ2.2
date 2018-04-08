@@ -8,5 +8,6 @@
 </head>
 <body>
 	<h1>Strona premium</h1>
+	<h2>Jupi</h2>
 </body>
 </html>
