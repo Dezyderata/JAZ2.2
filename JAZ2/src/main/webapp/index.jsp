@@ -7,9 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%if(request.getParameter("error")!=null){	%>
+	<%if(request.getParameter("error")!=null){
+		if(request.getParameter("error").equals("1")){%>
 		<h2>This user already exists!</h2>
-	<%} %>
+	<%}else if(request.getParameter("error").equals("2")){ %>
+		<h2>You don't have access to this site!</h2>
+	<%}}%>
 	<form action="/login" method="get">
 		<h2>Sign in:</h2>
 		<br>

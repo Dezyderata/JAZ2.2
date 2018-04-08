@@ -7,6 +7,19 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>Strona admina</h1>
+	<%if(request.getParameter("error")!=null){	%>
+		<h2>This user doesn't exists!</h2>
+	<%} %>
+		<form action="/admin" method="get">
+			<h2>Insert user which privileges you want to change:</h2>
+			<br>
+			<label>Username:<input type="text" id="userName" name="userName" required/></label><br/>
+			<input type="submit" value="Change"/>
+		</form>
+		<form action="/main.jsp" method="get">
+			<h2>I want to go back to main:</h2>
+			<br>
+			<input type="submit" value="Back"/>
+		</form>
 </body>
 </html>

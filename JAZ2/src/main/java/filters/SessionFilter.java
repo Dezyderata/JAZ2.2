@@ -13,9 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import domain.User;
-@WebFilter("/premium.jsp")
-public class PremiumFilter implements Filter {
+@WebFilter({"/admin.jsp", "/main.jsp", "/premium.jsp"})
+public class SessionFilter implements Filter {
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
@@ -26,14 +25,9 @@ public class PremiumFilter implements Filter {
 		if(session.getAttribute("conf")==null){
 			httpResponse.sendRedirect("index.jsp?error=2");
 			return;
-		}else if(!((User)(session.getAttribute("conf"))).isPremium() || !((User)(session.getAttribute("conf"))).isAdmin()) {
-				httpResponse.sendRedirect("main.jsp");
-				return;
 		}
 		chain.doFilter(request, response);
-		
 	}
-	
 	@Override
 	public void destroy() {
 		// TODO Auto-generated method stub
