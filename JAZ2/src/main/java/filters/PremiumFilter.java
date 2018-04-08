@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import domain.User;
-@WebFilter("/premium.jsp")
+@WebFilter(filterName="filter3", urlPatterns="/premium.jsp")
 public class PremiumFilter implements Filter {
 
 	@Override
@@ -23,10 +23,7 @@ public class PremiumFilter implements Filter {
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
 		HttpSession session = httpRequest.getSession();
-		if(session.getAttribute("conf")==null){
-			httpResponse.sendRedirect("index.jsp?error=2");
-			return;
-		}else if(!((User)(session.getAttribute("conf"))).isPremium() || !((User)(session.getAttribute("conf"))).isAdmin()) {
+		if(!((User)(session.getAttribute("conf"))).isPremium() || !((User)(session.getAttribute("conf"))).isAdmin()) {
 				httpResponse.sendRedirect("main.jsp");
 				return;
 		}

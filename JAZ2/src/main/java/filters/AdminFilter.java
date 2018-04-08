@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import domain.User;
 
-@WebFilter("/admin.jsp")
+@WebFilter(filterName="filter2", urlPatterns="/admin.jsp")
 public class AdminFilter implements Filter{
 
 	@Override
@@ -24,10 +24,7 @@ public class AdminFilter implements Filter{
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
 		HttpSession session = httpRequest.getSession();
-		if(session.getAttribute("conf")==null){
-			httpResponse.sendRedirect("index.jsp?error=2");
-			return;
-		}else if(!((User)(session.getAttribute("conf"))).isAdmin()) {
+		if(!((User)(session.getAttribute("conf"))).isAdmin()) {
 				httpResponse.sendRedirect("main.jsp");
 				return;
 		}
@@ -44,3 +41,4 @@ public class AdminFilter implements Filter{
 		// TODO Auto-generated method stub		
 	}
 }
+

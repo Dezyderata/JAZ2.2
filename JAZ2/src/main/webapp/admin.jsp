@@ -7,9 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%if(request.getParameter("error")!=null){	%>
+	<%if(request.getParameter("error")!=null){
+		if(request.getParameter("error").equals("1")){%>
 		<h2>This user doesn't exists!</h2>
-	<%} %>
+	<%}else if(request.getParameter("error").equals("2")){%>
+		<h2>Success!</h2>
+	<%}} %>
 		<form action="/admin" method="get">
 			<h2>Insert user which privileges you want to change:</h2>
 			<br>
