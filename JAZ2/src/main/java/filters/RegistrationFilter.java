@@ -1,6 +1,7 @@
 package filters;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -11,7 +12,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletResponse;
 
-import repositories.UserRepository;
+import dao.UserRepositoryDb;
 
 @WebFilter("/registration")
 public class RegistrationFilter implements Filter {
@@ -20,12 +21,17 @@ public class RegistrationFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
-		UserRepository repository = new UserRepository();
-		if(repository.count()!=0) {
-			if(repository.isInRepository(request.getParameter("name"))) {
+		UserRepositoryDb repository = new UserRepositoryDb();
+		repository.createTable();
+		
+		try {
+			if(repository.getUserInformationByName(request.getParameter("name"))!=null) {
 				httpResponse.sendRedirect("index.jsp?error=1");
 				return;
 			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		chain.doFilter(request, response);
 	}

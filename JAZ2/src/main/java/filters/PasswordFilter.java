@@ -11,8 +11,6 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletResponse;
 
-import repositories.UserRepository;
-
 @WebFilter("/registration")
 public class PasswordFilter implements Filter {
 

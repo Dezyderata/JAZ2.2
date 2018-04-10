@@ -38,5 +38,9 @@
 			<attribute name="maven.scope" value="compile"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
+	<classpathentry kind="con" path="junit.extensions.eclipse.quick.mock.MOCKITO_CONTAINER"/>
+	<classpathentry kind="lib" path="/usr/share/java/hsqldb.jar"/>
+	<classpathentry kind="lib" path="/home/agniesia/Downloads/power-architect-release-1.0.6/jdbc_drivers/hsqldb-1.8.0.9.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

@@ -23,5 +23,11 @@
 			</tr>
 		</c:forEach>
 		</table>
+		<form action="/main.jsp" method="get">
+			<h2>I want to go back to main:</h2>
+			<br>
+			<input type="submit" value="Back"/>
+		</form>
+	
 </body>
 </html>

@@ -1,6 +1,7 @@
 package filters;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -13,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import repositories.UserRepository;
+import dao.UserRepositoryDb;
 @WebFilter("/admin")
 public class ChangeFilter implements Filter{
 	@Override
@@ -21,10 +22,16 @@ public class ChangeFilter implements Filter{
 			throws IOException, ServletException {
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
-		UserRepository repository = new UserRepository();
-        if(!repository.isInRepository(request.getParameter("userName"))) {
-        	httpResponse.sendRedirect("admin.jsp?error=1");
-        }
+		UserRepositoryDb repository = new UserRepositoryDb();
+        try {
+        	String name = request.getParameter("userName");
+			if(repository.getUserInformationByName(name)==null) {
+				httpResponse.sendRedirect("admin.jsp?error=1");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         chain.doFilter(request, response);
 	}
 

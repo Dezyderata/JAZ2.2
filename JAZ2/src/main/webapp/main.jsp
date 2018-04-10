@@ -10,6 +10,10 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<%if(request.getParameter("error")!=null){
+		if(request.getParameter("error").equals("2")){ %>
+		<h2>You don't have access to this site!</h2>
+	<%}}%>
 	<h2>Main site</h2>
 	<h3>You are:</h3>
 	<c:out value="${conf.getName()}"/>

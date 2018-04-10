@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import domain.User;
+
 @WebFilter(filterName="filter3", urlPatterns="/premium")
 public class PremiumFilter implements Filter {
 
@@ -23,8 +24,8 @@ public class PremiumFilter implements Filter {
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		HttpServletResponse httpResponse = (HttpServletResponse) response;
 		HttpSession session = httpRequest.getSession();
-		if(!((User)(session.getAttribute("conf"))).isPremium() || !((User)(session.getAttribute("conf"))).isAdmin()) {
-				httpResponse.sendRedirect("main.jsp");
+		if(!((User)(session.getAttribute("conf"))).isPremium()) {
+				httpResponse.sendRedirect("main.jsp?error=2");
 				return;
 		}
 		chain.doFilter(request, response);
